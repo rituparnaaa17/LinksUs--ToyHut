@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toy Hut • Safdarjung Enclave, New Delhi</title>
+  <meta name="description" content="Toy Hut – Toys for all age groups. Retail & booking in Safdarjung Enclave, New Delhi. Call, WhatsApp or book online."/>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-wZKfGz7tOy0i6tq3ZfC9iZ2J0c6e7CQyYfZfP99m8p4Qx2Lqgk8JY2yqz3k1h1YVqf8K+f0kR2Y8m9vF1m2OLw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --red: #e53935;            /* primary */
+      --red-600:#d32f2f;         /* hover */
+      --dark:#0d0d0f;            /* text on light */
+      --muted:#75757a;           /* secondary text */
+      --light:#ffffff;
+      --bg:#fafafa;
+      --glass: rgba(255,255,255,0.7);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--dark); background:linear-gradient(180deg,#ffffff 0%, #fff5f5 35%, #ffffff 100%);
+    }
+
+    /* ---------- Header / Nav ---------- */
+    .navbar{
+      position:fixed; inset-inline:0; top:0; z-index:999;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
+      border-bottom:1px solid #ffffffaa;
+    }
+    .nav-wrap{max-width:1200px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--dark)}
+    .brand-logo{
+      width:40px; height:40px; border-radius:12px; display:grid; place-items:center;
+      background:radial-gradient(circle at 30% 30%, #fff 0 40%, #ffdede 41% 100%);
+      border:2px solid #fff; box-shadow:0 4px 18px rgba(229,57,53,.35);
+    }
+    .brand b{font-size:1.05rem}
+
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav-links a{color:#222; text-decoration:none; font-weight:500; opacity:.9}
+    .nav-links a:hover{color:var(--red)}
+    .nav-cta{padding:10px 16px; border-radius:999px; background:var(--red); color:#fff; font-weight:600; text-decoration:none; box-shadow:0 8px 24px rgba(229,57,53,.3)}
+    .nav-cta:hover{background:var(--red-600)}
+    .menu-btn{display:none; font-size:22px; border:none; background:transparent}
+
+    @media (max-width: 860px){
+      .menu-btn{display:block}
+      .nav-links{display:none}
+      .nav-links.open{
+        display:grid; gap:14px; position:absolute; top:64px; left:0; right:0;
+        background:#ffffffee; padding:16px 20px; border-bottom:1px solid #eee;
+      }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{position:relative; padding-top:98px; overflow:hidden}
+    .hero-inner{max-width:1200px; margin:0 auto; padding:34px 20px 80px; display:grid; grid-template-columns: 1.05fr .95fr; gap:30px; align-items:center}
+    .hero h1{font-size:clamp(34px, 4.6vw, 54px); line-height:1.05; margin:0 0 12px}
+    .hero p{color:#4a4a4f; font-weight:400}
+    .badge{
+      display:inline-flex; gap:10px; align-items:center; padding:8px 12px; border-radius:999px;
+      background:#fff; border:1px solid #ffe1e1; box-shadow:0 10px 30px rgba(229,57,53,.10)
+    }
+    .badge i{color:var(--red)}
+
+    .actions{display:flex; gap:14px; margin-top:18px; flex-wrap:wrap}
+    .btn{
+      padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:10px
+    }
+    .btn.primary{background:var(--red); color:#fff; box-shadow:0 16px 36px rgba(229,57,53,.3)}
+    .btn.primary:hover{background:var(--red-600)}
+    .btn.ghost{background:#fff; color:#222; border:1px solid #eee}
+    .btn.ghost:hover{border-color:#ddd}
+
+    .hero-img{
+      position:relative; isolation:isolate;
+      border-radius:24px; overflow:hidden; aspect-ratio: 4/3; box-shadow:0 20px 55px rgba(229,57,53,.22);
+    }
+    .hero-img img{width:100%; height:100%; object-fit:cover; transform:scale(1.04)}
+    .hero-blur{position:absolute; inset:-30%; z-index:-1; background:radial-gradient(ellipse at 70% 20%, rgba(229,57,53,.22), transparent 60%)}
+
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr; padding-bottom:40px}
+    }
+
+    /* ---------- Section shells ---------- */
+    section{padding:70px 20px}
+    .container{max-width:1200px; margin:auto}
+    .section-head{display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:22px}
+    .section-head h2{margin:0; font-size:clamp(24px,3.6vw,36px)}
+    .muted{color:var(--muted)}
+
+    /* ---------- Features (USPs) ---------- */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width: 900px){.grid-3{grid-template-columns:1fr}}
+    .card{
+      background:#fff; border:1px solid #f1dcdc; border-radius:18px; padding:20px; position:relative; overflow:hidden;
+      box-shadow:0 12px 34px rgba(229,57,53,.08); transform:translateY(6px); opacity:0; transition: all .6s ease;
+    }
+    .card.revealed{transform:translateY(0); opacity:1}
+    .card i{color:var(--red); font-size:22px}
+    .card h3{margin:10px 0 6px; font-size:18px}
+
+    /* ---------- Product categories ---------- */
+    .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+    @media (max-width: 1020px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 560px){.grid-4{grid-template-columns:1fr}}
+    .tile{
+      position:relative; border-radius:18px; overflow:hidden; height:270px; display:flex; align-items:flex-end;
+      box-shadow:0 14px 40px rgba(229,57,53,.18); background:#eee
+    }
+    .tile img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s ease}
+    .tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.45));}
+    .tile:hover img{transform:scale(1.08)}
+    .tile .label{position:relative; z-index:1; color:#fff; padding:16px; font-weight:600}
+
+    /* ---------- Bestsellers ---------- */
+    .product{background:#fff; border:1px solid #ffe2e2; border-radius:16px; overflow:hidden; box-shadow:0 10px 26px rgba(229,57,53,.10)}
+    .product img{width:100%; height:210px; object-fit:cover}
+    .product .p-body{padding:14px}
+    .price{font-weight:700}
+    .tag{display:inline-block; font-size:12px; padding:4px 8px; border-radius:999px; background:#fff1f1; color:var(--red); border:1px solid #ffd2d2}
+
+    /* ---------- Booking CTA ---------- */
+    .cta{
+      position:relative; border-radius:22px; overflow:hidden;
+      background:linear-gradient(135deg, #fff 0%, #fff0f0 55%);
+      border:1px solid #ffe0e0; box-shadow:0 18px 60px rgba(229,57,53,.18);
+      display:grid; grid-template-columns:1.3fr .7fr; gap:16px; align-items:center; padding:26px;
+    }
+    .cta .img{border-radius:16px; overflow:hidden; height:260px}
+    .cta .img img{width:100%; height:100%; object-fit:cover}
+    @media (max-width: 900px){.cta{grid-template-columns:1fr}.cta .img{height:200px}}
+
+    /* ---------- About ---------- */
+    .about{display:grid; grid-template-columns: 1.1fr .9fr; gap:26px}
+    @media (max-width: 960px){.about{grid-template-columns:1fr}}
+    .about .pic{border-radius:20px; overflow:hidden; box-shadow:0 18px 50px rgba(229,57,53,.18)}
+    .about .pic img{width:100%; height:100%; object-fit:cover}
+
+    /* ---------- Testimonials ---------- */
+    .testis{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width: 960px){.testis{grid-template-columns:1fr}}
+    .quote{background:#fff; border:1px solid #ffe1e1; border-radius:16px; padding:18px; box-shadow:0 10px 26px rgba(229,57,53,.08)}
+    .quote .stars{color:#ffb400}
+
+    /* ---------- Contact ---------- */
+    .contact{
+      display:grid; grid-template-columns:1fr 1fr; gap:26px
+    }
+    @media (max-width: 880px){.contact{grid-template-columns:1fr}}
+    form{display:grid; gap:12px}
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid #eee; outline:none; font-family:inherit;
+      background:#fff; transition:border .2s ease, box-shadow .2s ease
+    }
+    input:focus, textarea:focus{border-color:#ffd2d2; box-shadow:0 0 0 4px #fff0f0}
+    .submit{background:var(--red); color:#fff; border:none; font-weight:700; border-radius:10px; padding:12px 14px; cursor:pointer}
+    .submit:hover{background:var(--red-600)}
+
+    /* ---------- Footer ---------- */
+    footer{background:#111; color:#e2e2e2; padding:36px 20px}
+    .foot{max-width:1200px; margin:auto; display:grid; grid-template-columns:1.3fr .7fr; gap:20px}
+    @media (max-width: 900px){.foot{grid-template-columns:1fr}}
+    .foot a{color:#fff; text-decoration:none}
+    .foot small{color:#aaa}
+
+    /* ---------- Float Buttons ---------- */
+    .float-wrap{position:fixed; right:18px; bottom:18px; display:flex; flex-direction:column; gap:10px; z-index:999}
+    .float-btn{
+      width:54px; height:54px; border-radius:50%; display:grid; place-items:center; color:#fff; text-decoration:none;
+      box-shadow:0 14px 30px rgba(0,0,0,.25); transform:translateY(14px); opacity:0; animation:pop .8s ease forwards
+    }
+    .float-btn.wp{background:#25D366}
+    .float-btn.ig{background:radial-gradient(45deg,#f58529,#feda77,#dd2a7b,#8134af,#515BD4)}
+    .float-btn:hover{filter:saturate(105%) brightness(1.05)}
+    .float-btn i{font-size:22px}
+
+    @keyframes pop{to{transform:translateY(0); opacity:1}}
+
+    /* ---------- Subtle entrance animation for sections ---------- */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="Toy Hut Home">
+        <span class="brand-logo"><i class="fa-solid fa-cube" style="color:var(--red)"></i></span>
+        <b>TOY HUT</b>
+      </a>
+      <nav>
+        <button class="menu-btn" aria-label="Toggle Menu" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+        <div id="navLinks" class="nav-links">
+          <a href="#categories">Categories</a>
+          <a href="#bestsellers">Bestsellers</a>
+          <a href="#booking">Booking</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a class="nav-cta" href="#booking"><i class="fa-regular fa-calendar-check"></i> Book Now</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="hero">
+    <div class="hero-blur"></div>
+    <div class="hero-inner">
+      <div>
+        <span class="badge"><i class="fa-solid fa-location-dot"></i> Safdarjung Enclave, New Delhi</span>
+        <h1>Premium Toys for <span style="color:var(--red)">All Age Groups</span></h1>
+        <p>
+          Welcome to <b>Toy Hut</b> – your neighborhood toy store for curated, safe and joyful play. Walk in, explore, or book your items for pickup.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#bestsellers"><i class="fa-solid fa-store"></i> Explore Top Picks</a>
+          <a class="btn ghost" href="#booking"><i class="fa-regular fa-calendar"></i> Quick Booking</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="toy.jpg" alt="Kids playing with colorful toys"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- USPs -->
+  <section class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why shop at Toy Hut?</h2>
+        <span class="muted">Quality • Safety • Smiles</span>
+      </div>
+      <div class="grid-3">
+        <div class="card"><i class="fa-solid fa-shield-heart"></i><h3>Safe & Certified</h3><p class="muted">We stock BIS/CE compliant toys from trusted brands only.</p></div>
+        <div class="card"><i class="fa-solid fa-child-reaching"></i><h3>For Every Age</h3><p class="muted">Infant rattles to STEM kits, curated by age & interest.</p></div>
+        <div class="card"><i class="fa-solid fa-truck"></i><h3>Reserve & Pickup</h3><p class="muted">Book online and collect from our store, hassle‑free.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="categories" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <h2>Popular Categories</h2>
+        <a class="btn ghost" href="#booking">Need something specific?</a>
+      </div>
+      <div class="grid-4">
+        <a class="tile" href="#booking">
+          <img src="https://images.unsplash.com/photo-1548169873-12c9a9d52a09?q=80&w=1600&auto=format&fit=crop" alt="Plush toys"/>
+          <span class="label">Plush & Soft Toys</span>
+        </a>
+        <a class="tile" href="#booking">
+          <img src="https://images.unsplash.com/photo-1602080858428-57174f9431cf?q=80&w=1600&auto=format&fit=crop" alt="STEM kits"/>
+          <span class="label">STEM & Building</span>
+        </a>
+        <a class="tile" href="#booking">
+          <img src="https://images.unsplash.com/photo-1589810264340-0ce27b4a32a3?q=80&w=1600&auto=format&fit=crop" alt="Outdoor ride ons"/>
+          <span class="label">Ride‑ons & Outdoor</span>
+        </a>
+        <a class="tile" href="#booking">
+          <img src="https://images.unsplash.com/photo-1546778316-dfda79f1c5a8?q=80&w=1600&auto=format&fit=crop" alt="Board games"/>
+          <span class="label">Board Games & Puzzles</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestsellers -->
+  <section id="bestsellers" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <h2>Trending Now</h2>
+        <span class="muted">Handpicked customer favorites</span>
+      </div>
+      <div class="grid-4">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1596464716121-d8e1b0e47579?q=80&w=1600&auto=format&fit=crop" alt="Wooden blocks"/>
+          <div class="p-body">
+            <div class="tag">3+ years</div>
+            <h3>Classic Wooden Blocks</h3>
+            <p class="muted">Hands‑on creativity for toddlers.</p>
+          </div>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop" alt="Puzzle"/>
+          <div class="p-body">
+            <div class="tag">6+ years</div>
+            <h3>500‑Piece Puzzle</h3>
+            <p class="muted">Perfect for family game night.</p>
+          </div>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1612036782180-6f0b6c3ee40b?q=80&w=1600&auto=format&fit=crop" alt="RC car"/>
+          <div class="p-body">
+            <div class="tag">8+ years</div>
+            <h3>RC Speedster</h3>
+            <p class="muted">High torque, long‑range fun.</p>
+          </div>
+        </div>
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?q=80&w=1600&auto=format&fit=crop" alt="Doll house"/>
+          <div class="p-body">
+            <div class="tag">4+ years</div>
+            <h3>Dream Doll House</h3>
+            <p class="muted">Imaginative role‑play set.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking CTA -->
+  <section id="booking" class="reveal">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Reserve your favorites online</h2>
+          <p class="muted">Tell us what you need and we’ll confirm availability & hold it for you. Pickup at Toy Hut, Safdarjung Enclave.</p>
+          <div class="actions">
+            <a class="btn primary" href="#contact"><i class="fa-solid fa-envelope"></i> Get in touch</a>
+            <a class="btn ghost" href="https://wa.me/XXXXXXXXXX" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp us</a>
+          </div>
+        </div>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Store counter with toys"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="reveal">
+    <div class="container">
+      <div class="about">
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1596461404969-9ae70bd3f9b4?q=80&w=1600&auto=format&fit=crop" alt="Inside Toy Hut"/>
+        </div>
+        <div>
+          <h2>About Toy Hut</h2>
+          <p class="muted">
+            We are a local toys retail store in Safdarjung Enclave, New Delhi. Our shelves carry a thoughtful collection—educational, creative, and just plain fun—so every child (and kid at heart) finds something to love.
+          </p>
+          <ul class="muted">
+            <li>Curated by age & skill‑level</li>
+            <li>Try‑and‑feel in store, book online</li>
+            <li>Friendly support & quick assistance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="reveal">
+    <div class="container">
+      <div class="section-head"><h2>What parents say</h2><span class="muted">Real smiles, real reviews</span></div>
+      <div class="testis">
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          "Great variety and super helpful staff! Booking pickup saved us a trip with the kids."
+          <div class="muted">— A. Sharma</div>
+        </div>
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          "Quality toys you can trust. My son loves the STEM kits!"
+          <div class="muted">— R. Gupta</div>
+        </div>
+        <div class="quote">
+          <div class="stars">★★★★★</div>
+          "Affordable, premium feel. This is our go‑to toy store now."
+          <div class="muted">— N. Mehta</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact & Store Hours</h2>
+        <span class="muted">Email: <a href="mailto:rajivtoyhut@gmail.com">rajivtoyhut@gmail.com</a></span>
+      </div>
+      <div class="contact">
+        <form onsubmit="event.preventDefault(); alert('Thanks! We\'ll get back to you shortly.'); this.reset();">
+          <input required type="text" placeholder="Your name" />
+          <input required type="email" placeholder="Your email" />
+          <input type="tel" placeholder="Phone (optional)" />
+          <textarea rows="5" placeholder="What toys are you looking for?"></textarea>
+          <button class="submit" type="submit">Send Message</button>
+          <small class="muted">Or WhatsApp us using the green button →</small>
+        </form>
+        <div>
+          <div class="quote" style="height:100%">
+            <h3>Visit us</h3>
+            <p class="muted">Toy Hut, Safdarjung Enclave<br/>New Delhi</p>
+            <p><b>Hours</b><br/><span class="muted">Mon–Sun: 10:00 AM – 8:00 PM</span></p>
+            <p><b>Call</b><br/><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXXX</a></p>
+            <p><b>Instagram</b><br/><a href="#">@toyhut_delhi</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <div>
+        <b>TOY HUT</b>
+        <p class="muted">Premium toys for all age groups • Safdarjung Enclave, New Delhi</p>
+        <small>© <span id="year"></span> Toy Hut. All rights reserved.</small>
+      </div>
+      <div>
+        <p><small>Made with ❤ in Delhi.</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp & Instagram -->
+  <div class="float-wrap">
+    <a class="float-btn wp" href="https://wa.me/XXXXXXXXXX" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a class="float-btn ig" href="#" target="_blank" rel="noopener" aria-label="Open Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu(){
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach((e)=>{
+        if(e.isIntersecting){ e.target.classList.add('show');
+          e.target.querySelectorAll('.card').forEach((c,i)=>setTimeout(()=>c.classList.add('revealed'), 120*i));
+        }
+      })
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
